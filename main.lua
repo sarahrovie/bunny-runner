@@ -21,7 +21,8 @@ function love.load()
 
     cloud1 = Cloud()
     cloud2 = Cloud() 
-
+    cloud3 = Cloud()
+    
     quads = {}
 
     for i= 0, 1  do
@@ -46,11 +47,16 @@ function love.update(dt)
     if cloud1.x < math.random(400, 500) or cloud2.x < 704 then
         cloud2:update(dt) 
     end
+
+    if cloud2.x < math.random(400, 500) or cloud3.x < 704 then
+        cloud3:update(dt) 
+    end
 end
 
 function love.draw()
     cloud1:draw()
     cloud2:draw()
+    cloud3:draw()
 
     for i, row in ipairs(tilemap) do
         for j, tile in ipairs(row) do

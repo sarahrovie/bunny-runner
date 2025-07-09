@@ -8,7 +8,8 @@ function Cloud:new()
     self.x = 704
     self.y = math.random(20, 80)
     self.index = math.random(1, 2)
-    self.speed = 100
+    self.scale = math.random(2, 3)
+    self.speed = 200
 end
 
 function Cloud:update(dt)
@@ -22,5 +23,5 @@ function Cloud:update(dt)
 end
 
 function Cloud:draw()
-    love.graphics.draw(clouds[math.floor(self.index)], self.x, self.y, 0, 2, 2)
+    love.graphics.draw(clouds[math.floor(self.index)], self.x, self.y, 0, self.scale, self.scale)
 end
