@@ -7,6 +7,10 @@ love.graphics.setDefaultFilter("nearest", "nearest")
 
 function love.load()
     love.graphics.setBackgroundColor(252/255, 223/255, 205/255)
+    
+    Object = require "classic"
+    require "cloud"
+
     image = love.graphics.newImage("assets/img/Tilemap/tilemap_packed.png")
 
     local image_width = image:getWidth()
@@ -14,9 +18,9 @@ function love.load()
 
     width = 16
     height = 16
-    cloud_x  = 704
-    cloud_y = 50
-    cloud_index = 9
+
+    cloud1 = Cloud()
+    cloud2 = Cloud() 
 
     quads = {}
 
@@ -38,17 +42,15 @@ function love.load()
 end
 
 function love.update(dt)
-    if cloud_x < 0 then
-        cloud_x = 704
-        cloud_y = math.random(20, 80)
-        cloud_index = math.random(9, 10)
+    cloud1:update(dt)
+    if cloud1.x < math.random(400, 500) or cloud2.x < 704 then
+        cloud2:update(dt) 
     end
-
-    cloud_x = cloud_x - 100 * dt
 end
 
 function love.draw()
-    love.graphics.draw(image, quads[cloud_index], cloud_x, cloud_y, 0, 3, 3)
+    cloud1:draw()
+    cloud2:draw()
 
     for i, row in ipairs(tilemap) do
         for j, tile in ipairs(row) do
