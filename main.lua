@@ -37,9 +37,13 @@ function love.load()
         end
     end
 
-    tilemap = {
-        {5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5}
-    }
+    platform = {}
+    for i = 1, 44 do
+        table.insert(platform, 5)
+    end
+
+    tilemap = {}
+    table.insert(tilemap, platform)
 end
 
 function love.update(dt)
