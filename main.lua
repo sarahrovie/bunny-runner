@@ -23,7 +23,7 @@ function love.load()
     cloud1 = Cloud()
     cloud2 = Cloud() 
     cloud3 = Cloud()
-    bunny = Bunny(20, 138)
+    bunny = Bunny(40, 138)
     
     quads = {}
 
