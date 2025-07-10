@@ -10,6 +10,7 @@ function love.load()
     
     Object = require "classic"
     require "cloud"
+    require "bunny"
 
     image = love.graphics.newImage("assets/img/Tilemap/tilemap_packed.png")
 
@@ -22,6 +23,7 @@ function love.load()
     cloud1 = Cloud()
     cloud2 = Cloud() 
     cloud3 = Cloud()
+    bunny = Bunny(20, 138)
     
     quads = {}
 
@@ -55,12 +57,15 @@ function love.update(dt)
     if cloud2.x < math.random(400, 500) or cloud3.x < 704 then
         cloud3:update(dt) 
     end
+
+    bunny:update(dt)
 end
 
 function love.draw()
     cloud1:draw()
     cloud2:draw()
     cloud3:draw()
+    bunny:draw()
 
     for i, row in ipairs(tilemap) do
         for j, tile in ipairs(row) do
