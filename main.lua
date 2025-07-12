@@ -10,6 +10,7 @@ function love.load()
     
     Object = require "classic"
     require "cloud"
+    require "entity"
     require "bunny"
 
     image = love.graphics.newImage("assets/img/Tilemap/tilemap_packed.png")

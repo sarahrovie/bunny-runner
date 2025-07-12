@@ -1,8 +1,11 @@
-Bunny = Object:extend()
+Bunny = Entity:extend()
 
 function Bunny:new(x, y)
-    self.x = x
-    self.y = y
+    Bunny.super.new(self, x, y, "assets/img/Tiles/tile_0045.png")
+    self.scale = 2
+    self.width = self.width*self.scale
+    self.height = self.height*self.scale
+
     frames = {}
 
     table.insert(frames, love.graphics.newImage("assets/img/Tiles/tile_0045.png"))
@@ -19,5 +22,5 @@ function Bunny:update(dt)
 end
 
 function Bunny:draw()
-    love.graphics.draw(frames[math.floor(currentFrame)], self.x, self.y, 0, 2, 2)
+    love.graphics.draw(frames[math.floor(currentFrame)], self.x, self.y, 0, self.scale, self.scale)
 end
