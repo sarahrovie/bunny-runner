@@ -11,42 +11,31 @@ function love.load()
     Object = require "classic"
     require "cloud"
     require "entity"
+    require "platform"
     require "bunny"
-
-    image = love.graphics.newImage("assets/img/Tilemap/tilemap_packed.png")
-
-    local image_width = image:getWidth()
-    local image_height = image:getHeight()
-
-    width = 16
-    height = 16
 
     cloud1 = Cloud()
     cloud2 = Cloud() 
     cloud3 = Cloud()
     bunny = Bunny(40, 138)
-    
-    quads = {}
-
-    for i= 0, 1  do
-        for j = 0, 6 do
-            table.insert(quads,
-            love.graphics.newQuad(
-                1 + j * width,
-                1 + i * (height - 1),
-                width, height,
-                image_width, image_height
-            ))
-        end
-    end
 
     platform = {}
+
+    tiles = {}
     for i = 1, 44 do
-        table.insert(platform, 5)
+        table.insert(tiles, 1)
     end
 
     tilemap = {}
-    table.insert(tilemap, platform)
+    table.insert(tilemap, tiles)
+
+    for i, row in ipairs(tilemap) do
+        for j, w in ipairs(row) do
+            if w == 1 then
+                table.insert(platform, Platform((j-1) * 16, 170))
+            end
+        end
+    end
 end
 
 function love.update(dt)
@@ -68,12 +57,8 @@ function love.draw()
     cloud3:draw()
     bunny:draw()
 
-    for i, row in ipairs(tilemap) do
-        for j, tile in ipairs(row) do
-            if tile ~= 0 then
-                love.graphics.draw(image, quads[tile], (j - 1) * width, 170, 0, 2, 2)
-            end
-        end
+    for i, v in ipairs(platform) do
+        v:draw()
     end
 end
 
