@@ -15,6 +15,8 @@ function Bunny:new(x, y)
 end
 
 function Bunny:update(dt)
+    Bunny.super.update(self, dt)
+    
     currentFrame = currentFrame + 10 * dt
     if currentFrame > 3 then
         currentFrame = 1

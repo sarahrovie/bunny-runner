@@ -13,15 +13,25 @@ function love.load()
     require "entity"
     require "platform"
     require "bunny"
+    require "obstacle"
 
     cloud1 = Cloud()
     cloud2 = Cloud() 
     cloud3 = Cloud()
+
     bunny = Bunny(40, 138)
 
-    platform = {}
+    obstacle1 = Obstacle(704, 138)
+    obstacle2 = Obstacle(704, 138)
 
+    objects = {}
+    table.insert(objects, bunny)
+    table.insert(objects, obstacle1)
+    table.insert(objects, obstacle2)
+
+    platform = {}
     tiles = {}
+
     for i = 1, 44 do
         table.insert(tiles, 1)
     end
@@ -49,15 +59,30 @@ function love.update(dt)
     end
 
     bunny:update(dt)
+
+    for i, tile in ipairs(platform) do
+        for j, object in ipairs(objects) do
+            local collision = object:resolveCollision(tile)
+        end
+    end
+
+    obstacle1:update(dt)
+
+    if obstacle1.x < math.random(300, 400) or obstacle2.x < 704 then
+        obstacle2:update(dt)
+    end
 end
 
 function love.draw()
     cloud1:draw()
     cloud2:draw()
     cloud3:draw()
-    bunny:draw()
 
     for i, v in ipairs(platform) do
+        v:draw()
+    end
+
+    for i, v in ipairs(objects) do
         v:draw()
     end
 end
