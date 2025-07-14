@@ -15,9 +15,8 @@ function love.load()
     require "bunny"
     require "obstacle"
 
-    cloud1 = Cloud()
-    cloud2 = Cloud() 
-    cloud3 = Cloud()
+    cloud1 = Cloud(20, 200)
+    cloud2 = Cloud(30, 180) 
 
     bunny = Bunny(40, 138)
 
@@ -50,12 +49,8 @@ end
 
 function love.update(dt)
     cloud1:update(dt)
-    if cloud1.x < math.random(400, 500) or cloud2.x < 704 then
+    if checkPosition(cloud1, 300, 350, cloud2) then
         cloud2:update(dt) 
-    end
-
-    if cloud2.x < math.random(400, 500) or cloud3.x < 704 then
-        cloud3:update(dt) 
     end
 
     bunny:update(dt)
@@ -68,7 +63,7 @@ function love.update(dt)
 
     obstacle1:update(dt)
 
-    if obstacle1.x < math.random(300, 400) or obstacle2.x < 704 then
+    if checkPosition(obstacle1, 300, 400, obstacle2) then
         obstacle2:update(dt)
     end
 end
@@ -76,7 +71,6 @@ end
 function love.draw()
     cloud1:draw()
     cloud2:draw()
-    cloud3:draw()
 
     for i, v in ipairs(platform) do
         v:draw()
@@ -84,6 +78,12 @@ function love.draw()
 
     for i, v in ipairs(objects) do
         v:draw()
+    end
+end
+
+function checkPosition(current, x1, x2, next, dt)
+    if current.x < math.random(x1, x2) or next.x < 704 then
+        return true
     end
 end
 
