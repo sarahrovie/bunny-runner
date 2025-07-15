@@ -1,15 +1,15 @@
 Bunny = Entity:extend()
 
 function Bunny:new(x, y)
-    Bunny.super.new(self, x, y, "assets/img/Tiles/tile_0045.png")
+    Bunny.super.new(self, x, y, "assets/tiles/bunny/bunny1.png")
     self.scale = 2
     self.width = self.width*self.scale
     self.height = self.height*self.scale
 
     frames = {}
 
-    table.insert(frames, love.graphics.newImage("assets/img/Tiles/tile_0045.png"))
-    table.insert(frames, love.graphics.newImage("assets/img/Tiles/tile_0046.png"))
+    table.insert(frames, love.graphics.newImage("assets/tiles/bunny/bunny1.png"))
+    table.insert(frames, love.graphics.newImage("assets/tiles/bunny/bunny2.png"))
     
     currentFrame = 1
 end
