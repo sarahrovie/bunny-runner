@@ -7,7 +7,7 @@ function Entity:new(x, y, image_path)
     self.width = self.image:getWidth()
     self.height = self.image:getHeight()
     self.last = {}
-    self.last.x =  self.x
+    self.last.x = self.x
     self.last.y = self.y
 end
 
