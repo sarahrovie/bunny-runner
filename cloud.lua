@@ -9,7 +9,7 @@ function Cloud:new(y, speed)
     self.y = y
     self.index = math.random(1, 2)
     self.scale = 2
-    self.speed = speed
+    self.speed = 200
 end
 
 function Cloud:update(dt)

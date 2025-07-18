@@ -15,8 +15,8 @@ function love.load()
     require "bunny"
     require "obstacle"
 
-    cloud1 = Cloud(20, 200)
-    cloud2 = Cloud(30, 180) 
+    cloud1 = Cloud(20)
+    cloud2 = Cloud(30) 
 
     bunny = Bunny(40, 138)
 
