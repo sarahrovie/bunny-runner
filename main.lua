@@ -24,7 +24,6 @@ function love.load()
     obstacle2 = Obstacle(704, 138)
 
     objects = {}
-    table.insert(objects, bunny)
     table.insert(objects, obstacle1)
     table.insert(objects, obstacle2)
 
@@ -55,10 +54,14 @@ function love.update(dt)
 
     bunny:update(dt)
 
-    for i, tile in ipairs(platform) do
-        for j, object in ipairs(objects) do
-            local collision = object:resolveCollision(tile)
-        end
+    -- for i, tile in ipairs(platform) do
+    --     for j, object in ipairs(objects) do
+    --         local collision = object:resolveCollision(tile)
+    --     end
+    -- end
+
+    for i, object in ipairs(objects) do
+        bunny:resolveCollision(object)
     end
 
     obstacle1:update(dt)
@@ -71,6 +74,7 @@ end
 function love.draw()
     cloud1:draw()
     cloud2:draw()
+    bunny:draw()
 
     for i, v in ipairs(platform) do
         v:draw()

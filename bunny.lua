@@ -27,6 +27,12 @@ function Bunny:update(dt)
     end
 end
 
+function Bunny:resolveCollision(e)
+    if self:checkCollision(e) then
+        love.load()
+    end
+end
+
 function Bunny:draw()
     love.graphics.draw(frames[math.floor(currentFrame)], self.x, self.y, 0, self.scale, self.scale)
 end
