@@ -27,8 +27,9 @@ function Entity:checkCollision(e)
     and self.y < e.y + e.height
 end
 
--- function Entity:resolveCollision(e)
---     if self:checkCollision(e) then
---         print("hit")
---     end
--- end
+function Entity:resolvePlatformCollision(e)
+    if self:checkCollision(e) then
+        self.x = self.last.x
+        self.y = self.last.y
+    end
+end

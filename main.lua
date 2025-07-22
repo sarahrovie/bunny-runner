@@ -54,14 +54,12 @@ function love.update(dt)
 
     bunny:update(dt)
 
-    -- for i, tile in ipairs(platform) do
-    --     for j, object in ipairs(objects) do
-    --         local collision = object:resolveCollision(tile)
-    --     end
-    -- end
-
     for i, object in ipairs(objects) do
-        bunny:resolveCollision(object)
+        bunny:resolveObstacleCollision(object)
+    end
+
+    for i, tile in ipairs(platform) do
+        bunny:resolvePlatformCollision(tile)
     end
 
     obstacle1:update(dt)
