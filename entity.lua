@@ -41,5 +41,6 @@ function Entity:resolvePlatformCollision(e)
         self.y = self.y - pushback
         self.gravity = 0
         self.canJump = true
+        self.isJumping = false
     end
 end
