@@ -14,6 +14,7 @@ function love.load()
     require "platform"
     require "bunny"
     require "obstacle"
+    isPlaying = false
 
     cloud1 = Cloud(20)
     cloud2 = Cloud(30) 
@@ -47,16 +48,26 @@ function love.load()
 end
 
 function love.update(dt)
-    cloud1:update(dt)
-    if checkPosition(cloud1, 300, 350, cloud2) then
-        cloud2:update(dt) 
-    end
+        
+    if isPlaying == true then
+        bunny:update(dt) 
 
-    for i, v in ipairs(platform) do
-        v:update(dt)
+        cloud1:update(dt)
+
+        if checkPosition(cloud1, 300, 350, cloud2) then
+            cloud2:update(dt) 
+        end
+
+        for i, v in ipairs(platform) do
+            v:update(dt)
+        end
+
+        obstacle1:update(dt)
+
+        if checkPosition(obstacle1, 300, 400, obstacle2) then
+            obstacle2:update(dt)
+        end
     end
-    
-    bunny:update(dt)
 
     for i, object in ipairs(objects) do
         bunny:resolveObstacleCollision(object)
@@ -64,12 +75,6 @@ function love.update(dt)
 
     for i, tile in ipairs(platform) do
         bunny:resolvePlatformCollision(tile)
-    end
-
-    obstacle1:update(dt)
-
-    if checkPosition(obstacle1, 300, 400, obstacle2) then
-        obstacle2:update(dt)
     end
 end
 
@@ -95,7 +100,11 @@ end
 
 function love.keypressed(key)
     if key == "space" or key == "up" then
-        bunny:jump()
+        if isPlaying == false then
+            isPlaying = true
+        else
+            bunny:jump()
+        end
     end
 end
 
