@@ -6,14 +6,22 @@ function Entity:new(x, y, image_path)
     self.image = love.graphics.newImage(image_path)
     self.width = self.image:getWidth()
     self.height = self.image:getHeight()
+
     self.last = {}
     self.last.x = self.x
     self.last.y = self.y
+
+    self.gravity = 0
+    self.weight = 100
 end
 
 function Entity:update(dt)
     self.last.x = self.x
     self.last.y = self.y
+    
+    self.gravity = self.gravity + self.weight * dt
+
+    self.y = self.y + self.gravity * dt
 end
 
 function Entity:draw()
@@ -31,5 +39,6 @@ function Entity:resolvePlatformCollision(e)
     if self:checkCollision(e) then
         self.x = self.last.x
         self.y = self.last.y
+        self.gravity = 0
     end
 end

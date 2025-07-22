@@ -19,8 +19,6 @@ function Bunny:update(dt)
 
     if love.keyboard.isDown("space") then
         self.y = self.y - 200 * dt
-    elseif love.keyboard.isDown("down") then
-        self.y = self.y + 200 * dt
     end
     
     currentFrame = currentFrame + 10 * dt

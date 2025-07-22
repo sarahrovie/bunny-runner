@@ -2,6 +2,7 @@ Platform = Entity:extend()
 
 function Platform:new(x, y)
     Platform.super.new(self, x, y, "assets/tiles/platform/platform1.png")
+    self.weight = 0
 end
 
 function Platform:update(dt)

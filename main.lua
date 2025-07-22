@@ -52,6 +52,10 @@ function love.update(dt)
         cloud2:update(dt) 
     end
 
+    for i, v in ipairs(platform) do
+        v:update(dt)
+    end
+    
     bunny:update(dt)
 
     for i, object in ipairs(objects) do

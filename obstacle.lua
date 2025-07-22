@@ -7,6 +7,7 @@ function Obstacle:new(x, y)
     self.height = self.height*self.scale
     self.index = math.random(1, 6)
     self.speed = 200
+    self.weight = 0
 
     obstacles = {}
     for i = 1, 6 do
