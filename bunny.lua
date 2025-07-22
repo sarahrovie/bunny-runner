@@ -5,6 +5,7 @@ function Bunny:new(x, y)
     self.scale = 2
     self.width = self.width*self.scale
     self.height = self.height*self.scale
+    self.canJump = false
 
     frames = {}
 
@@ -16,10 +17,6 @@ end
 
 function Bunny:update(dt)
     Bunny.super.update(self, dt)
-
-    if love.keyboard.isDown("space") then
-        self.y = self.y - 200 * dt
-    end
     
     currentFrame = currentFrame + 10 * dt
     if currentFrame > 3 then
@@ -30,6 +27,14 @@ end
 function Bunny:resolveObstacleCollision(e)
     if self:checkCollision(e) then
         love.load()
+    end
+end
+
+function Bunny:jump()
+    if self.canJump then
+        self.gravity = -300 
+        currentFrame = 1
+        self.canJump = false
     end
 end
 

@@ -93,6 +93,12 @@ function checkPosition(current, x1, x2, next, dt)
     end
 end
 
+function love.keypressed(key)
+    if key == "space" or key == "up" then
+        bunny:jump()
+    end
+end
+
 local love_errorhandler = love.errorhandler
 
 function love.errorhandler(msg)

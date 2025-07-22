@@ -12,7 +12,7 @@ function Entity:new(x, y, image_path)
     self.last.y = self.y
 
     self.gravity = 0
-    self.weight = 100
+    self.weight = 480
 end
 
 function Entity:update(dt)
@@ -37,8 +37,9 @@ end
 
 function Entity:resolvePlatformCollision(e)
     if self:checkCollision(e) then
-        self.x = self.last.x
-        self.y = self.last.y
+        local pushback = self.y + self.height - e.y
+        self.y = self.y - pushback
         self.gravity = 0
+        self.canJump = true
     end
 end
