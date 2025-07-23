@@ -15,6 +15,7 @@ function love.load()
     require "bunny"
     require "obstacle"
     isPlaying = false
+    score = 0
 
     cloud1 = Cloud(20)
     cloud2 = Cloud(30) 
@@ -50,7 +51,8 @@ end
 function love.update(dt)
         
     if isPlaying == true then
-        bunny:update(dt) 
+        bunny:update(dt)
+        score = score + 2 * dt
 
         cloud1:update(dt)
 
@@ -79,6 +81,9 @@ function love.update(dt)
 end
 
 function love.draw()
+    love.graphics.setColor(0, 0, 0)
+    love.graphics.print(tostring(math.floor(score)), 660, 10)
+    love.graphics.setColor(1, 1, 1)
     cloud1:draw()
     cloud2:draw()
     bunny:draw()

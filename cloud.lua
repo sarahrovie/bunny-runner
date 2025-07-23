@@ -1,6 +1,6 @@
 Cloud = Object:extend()
 
-function Cloud:new(y, speed)
+function Cloud:new(y)
     clouds = {}
     table.insert(clouds, love.graphics.newImage("assets/tiles/clouds/cloud1.png"))
     table.insert(clouds, love.graphics.newImage("assets/tiles/clouds/cloud2.png"))
