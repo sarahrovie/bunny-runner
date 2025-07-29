@@ -81,7 +81,7 @@ function love.update(dt)
 end
 
 function love.draw()
-    love.graphics.setColor(0, 0, 0)
+    love.graphics.setColor(1, 1, 1)
     love.graphics.print(tostring(math.floor(score)), 660, 10)
     love.graphics.setColor(1, 1, 1)
     cloud1:draw()
