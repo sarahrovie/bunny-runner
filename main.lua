@@ -4,10 +4,12 @@ end
 
 _G.love = require("love")
 love.graphics.setDefaultFilter("nearest", "nearest")
+love.graphics.setBackgroundColor(252/255, 223/255, 205/255)
+    font = love.graphics.newFont("assets/fonts/Kenney Mini.ttf", 19)
 
 function love.load()
-    love.graphics.setBackgroundColor(252/255, 223/255, 205/255)
-    
+    love.graphics.setFont(font)
+
     Object = require "classic"
     require "cloud"
     require "entity"
@@ -81,9 +83,6 @@ function love.update(dt)
 end
 
 function love.draw()
-    love.graphics.setColor(1, 1, 1)
-    love.graphics.print(tostring(math.floor(score)), 660, 10)
-    love.graphics.setColor(1, 1, 1)
     cloud1:draw()
     cloud2:draw()
     bunny:draw()
@@ -95,6 +94,9 @@ function love.draw()
     for i, v in ipairs(objects) do
         v:draw()
     end
+
+    love.graphics.setColor(1, 1, 1)
+    love.graphics.print(tostring(math.floor(score)), 660, 10)
 end
 
 function checkPosition(current, x1, x2, next, dt)
