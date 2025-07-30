@@ -10,14 +10,24 @@ love.graphics.setBackgroundColor(252/255, 223/255, 205/255)
 function love.load()
     love.graphics.setFont(font)
 
+    lume = require "lume"
     Object = require "classic"
     require "cloud"
     require "entity"
     require "platform"
     require "bunny"
     require "obstacle"
+
     isPlaying = false
     score = 0
+    highscore = 0
+
+    if love.filesystem.getInfo("savedata.txt") then
+        file = love.filesystem.read("savedata.txt")
+        data = lume.deserialize(file)
+
+        highscore = data
+    end
 
     cloud1 = Cloud(20)
     cloud2 = Cloud(30) 
@@ -74,12 +84,19 @@ function love.update(dt)
     end
 
     for i, object in ipairs(objects) do
-        bunny:resolveObstacleCollision(object)
+        if bunny:resolveObstacleCollision(object) then
+            if score > highscore then
+                highscore = math.floor(score)
+                saveGame()
+            end
+            love.load()
+        end
     end
 
     for i, tile in ipairs(platform) do
         bunny:resolvePlatformCollision(tile)
     end
+
 end
 
 function love.draw()
@@ -96,13 +113,22 @@ function love.draw()
     end
 
     love.graphics.setColor(1, 1, 1)
-    love.graphics.print(tostring(math.floor(score)), 660, 10)
+    if highscore > 0 then
+        love.graphics.print("HI " .. tostring(highscore), 580, 10) 
+    end
+    love.graphics.print(tostring(math.floor(score)), 650, 10)
 end
 
 function checkPosition(current, x1, x2, next, dt)
     if current.x < math.random(x1, x2) or next.x < 704 then
         return true
     end
+end
+
+function saveGame()
+    hs = highscore
+    serialized = lume.serialize(hs)
+    love.filesystem.write("savedata.txt", serialized)
 end
 
 function love.keypressed(key)
@@ -112,6 +138,11 @@ function love.keypressed(key)
         else
             bunny:jump()
         end
+    end
+
+    if key == "r" then
+        love.filesystem.remove("savedata.txt")
+            love.event.quit("restart")
     end
 end
 

@@ -31,9 +31,7 @@ function Bunny:update(dt)
 end
 
 function Bunny:resolveObstacleCollision(e)
-    if self:checkCollision(e) then
-        love.load()
-    end
+    return self:checkCollision(e)
 end
 
 function Bunny:jump()
