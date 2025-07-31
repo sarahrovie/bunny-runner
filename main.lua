@@ -113,10 +113,12 @@ function love.draw()
     end
 
     love.graphics.setColor(1, 1, 1)
-    if highscore > 0 then
-        love.graphics.print("HI " .. tostring(highscore), 580, 10) 
+    if isPlaying then
+        if highscore > 0 then
+            love.graphics.print("HI " .. tostring(highscore), 580, 10) 
+        end
+        love.graphics.print(tostring(math.floor(score)), 650, 10) 
     end
-    love.graphics.print(tostring(math.floor(score)), 650, 10)
 end
 
 function checkPosition(current, x1, x2, next, dt)
