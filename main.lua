@@ -5,7 +5,7 @@ end
 _G.love = require("love")
 love.graphics.setDefaultFilter("nearest", "nearest")
 love.graphics.setBackgroundColor(252/255, 223/255, 205/255)
-    font = love.graphics.newFont("assets/fonts/Kenney Mini.ttf", 20)
+    font = love.graphics.newFont("assets/font/Kenney Mini.ttf", 20)
 
 function love.load()
     love.graphics.setFont(font)
@@ -148,11 +148,6 @@ function love.keypressed(key)
         else
             bunny:jump()
         end
-    end
-
-    if key == "r" then
-        love.filesystem.remove("savedata.txt")
-            love.event.quit("restart")
     end
 end
 
