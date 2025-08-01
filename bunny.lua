@@ -5,6 +5,7 @@ function Bunny:new(x, y)
     self.scale = 2
     self.width = self.width*self.scale
     self.height = self.height*self.scale
+    self.speed = 10
     self.canJump = false
     self.isJumping = false
 
@@ -23,7 +24,7 @@ function Bunny:update(dt)
         currentFrame = 2
     end
 
-    currentFrame = currentFrame + 10 * dt
+    currentFrame = currentFrame + self.speed * dt
 
     if currentFrame > 3 then
         currentFrame = 1

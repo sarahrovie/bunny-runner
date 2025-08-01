@@ -5,7 +5,7 @@ end
 _G.love = require("love")
 love.graphics.setDefaultFilter("nearest", "nearest")
 love.graphics.setBackgroundColor(252/255, 223/255, 205/255)
-    font = love.graphics.newFont("assets/fonts/Kenney Mini.ttf", 19)
+    font = love.graphics.newFont("assets/fonts/Kenney Mini.ttf", 20)
 
 function love.load()
     love.graphics.setFont(font)
@@ -30,7 +30,7 @@ function love.load()
     end
 
     cloud1 = Cloud(20)
-    cloud2 = Cloud(30) 
+    cloud2 = Cloud(30)
 
     bunny = Bunny(40, 138)
 
@@ -63,8 +63,9 @@ end
 function love.update(dt)
         
     if isPlaying == true then
-        bunny:update(dt)
         score = score + 2 * dt
+
+        bunny:update(dt)
 
         cloud1:update(dt)
 
@@ -78,8 +79,13 @@ function love.update(dt)
 
         obstacle1:update(dt)
 
-        if checkPosition(obstacle1, 300, 400, obstacle2) then
+        if checkPosition(obstacle1, 200, 400, obstacle2) then
             obstacle2:update(dt)
+        end
+
+        
+        for i, v in ipairs(objects) do
+            v.speed = v.speed + 1 * dt
         end
     end
 
@@ -118,11 +124,13 @@ function love.draw()
             love.graphics.print("HI " .. tostring(highscore), 580, 10) 
         end
         love.graphics.print(tostring(math.floor(score)), 650, 10) 
+    else
+        love.graphics.print("PRESS SPACE/UP TO START!", 220, 80)
     end
 end
 
-function checkPosition(current, x1, x2, next, dt)
-    if current.x < math.random(x1, x2) or next.x < 704 then
+function checkPosition(current, x1, x2, next)
+    if current.x < math.floor(math.random(x1, x2)) or next.x < 704 then
         return true
     end
 end

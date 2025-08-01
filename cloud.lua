@@ -17,7 +17,7 @@ function Cloud:update(dt)
         self.x = 704
         self.index = math.random(1, 2)
     end
-
+    
     self.x = self.x - self.speed * dt
 end
 
